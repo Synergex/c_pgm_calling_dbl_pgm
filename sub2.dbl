@@ -1,0 +1,35 @@
+; This subroutine displays the three arguments passed in.
+; The second and third argument are multiplied together and that value
+; is returned to the caller.
+.subroutine sub2
+a_arg1,	a		;First argument is alpha passed by descriptor
+a_arg2,	n		;Second argument is decimal passed by descriptor
+^val(a_arg3),	i	;Third argument is numeric passed by value
+record
+	val,	i4
+.proc
+	writes(1, "sub2: a_arg1 = " + a_arg1)
+	writes(1, "sub2: a_arg2 = " + %string(a_arg2))
+	writes(1, "sub2: a_arg3 = " + %string(a_arg3))
+	val = a_arg2 * a_arg3
+	writes(1, "sub2: return " + %string(val))
+	xreturn val
+.end
+
+; This function displays the three arguments passed in.
+; The second and third argument are multiplied together and that value
+; is returned to the caller.
+.function fun2, ^val
+a_arg1,	a		;First argument is alpha passed by descriptor
+a_arg2,	n		;Second argument is decimal passed by descriptor
+^val(a_arg3),	i	;Third argument is numeric passed by value
+record
+	val,	i4
+.proc
+	writes(1, "fun2: a_arg1 = " + a_arg1)
+	writes(1, "fun2: a_arg2 = " + %string(a_arg2))
+	writes(1, "fun2: a_arg3 = " + %string(a_arg3))
+	val = a_arg2 * a_arg3
+	writes(1, "fun2: return " + %string(val))
+	freturn val
+.end
